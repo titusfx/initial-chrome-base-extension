@@ -1,0 +1,48 @@
+{
+  "name": "base-extension",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "serve": "npm run build:dev:background-process && npm run start",
+    "start": "ng serve",
+    "dev": "npm run build:dev:angular & (sleep 1 && npm run build:dev:background-process)",
+    "build:dev:angular": "ng build --configuration development --watch --delete-output-path false",
+    "build:dev:background-process": "webpack -w --config src/chrome/webpack.config",
+    "build:production": "ng build --configuration production && npm run build:pro:background-process && npm run pack",
+    "build:pro:background-process": "webpack --progress --config src/chrome/webpack.config.prod.js",
+    "pack": "cd dist/base-extension && bestzip ../base-extension.zip *",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^15.0.4",
+    "@angular/common": "^15.0.4",
+    "@angular/compiler": "^15.0.4",
+    "@angular/core": "^15.0.4",
+    "@angular/forms": "^15.0.4",
+    "@angular/platform-browser": "^15.0.4",
+    "@angular/platform-browser-dynamic": "^15.0.4",
+    "@angular/router": "^15.0.4",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^15.0.4",
+    "@angular/cli": "^15.0.4",
+    "@angular/compiler-cli": "^15.0.4",
+    "@types/chrome": "^0.0.154",
+    "@types/jasmine": "~3.6.0",
+    "@types/node": "^12.11.1",
+    "bestzip": "^2.2.0",
+    "jasmine-core": "~3.7.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "~4.8.4",
+    "webpack-cli": "^4.7.2"
+  }
+}
